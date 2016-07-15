@@ -46,8 +46,9 @@
     "postinstall": "bower install"
   },
   "dependencies": {
-    "bluebird": "^3.4.1",
+    "bluebird": "~3.4.1",
     "satelize": "^0.2.0",
-    "socket.io": "^1.4.8"
+    "socket.io": "^1.4.8",
+    "es6-promise": "~3.2.1"
   }
 }
