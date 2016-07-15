@@ -49,7 +49,9 @@
           <label for="inputCash" class="col-sm-3 control-label">Cash</label>
 
           <div class="col-sm-9">
-            <input type="text" class="form-control" id="inputCash" placeholder="" value="{{user.cash}}">
+            <label id="inputCash" class="col-sm-3 control-label">{{user.cash}}</label>
+            <input type="text" class="form-control cash-control" placeholder="" ng-model="locals.cash_add" style="width: 42%;" /> 
+            <button class="btn btn-primary" ng-click="cashToUser()">Add cash</button>
           </div>
         </div>
 

@@ -2,7 +2,7 @@ angular.module('BlurAdmin').service('socket', function(){
   var self = this;
   self.data = {};
 
-  console.log('BlurAdmin Socket Service!');
+  console.log('Trade Admin Socket Service!');
 
   self.socket = io.connect(window.location.protocol + '//' + window.location.host, {
     'forceNew': true,

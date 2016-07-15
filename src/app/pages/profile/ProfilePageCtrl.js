@@ -17,6 +17,19 @@
     $scope.picture = $filter('appImage')('theme/no-photo.png');
     //$scope.noPicture = true;
     $scope.Date = Date;
+    $scope.locals = {};
+
+    $scope.cashToUser = function($e){
+      console.log('ProfilePageCtrl:: cashToUser', $scope.user.cash, $scope.locals.cash_add);
+      if (!parseInt($scope.locals.cash_add)){
+        console.error('ProfilePageCtrl:: cashToUser | cash must be number',$scope.locals.cash_add);
+        return;
+      }
+      socket.socket.emit('admin:cash', {
+        userId: $scope.user.userId,
+        cash: parseInt($scope.locals.cash_add)
+      });
+    };
 
     $scope.removePicture = function () {
       $scope.picture = $filter('appImage')('theme/no-photo.png');
@@ -35,6 +48,7 @@
         if (socket.data.users[i].userId === $stateParams.userId){
           $scope.user = socket.data.users[i];
           $scope.user.total_deposit = 0;
+          $scope.locals.cash_add = $scope.user.cash;
           for (var i in $scope.user.deposits){
             $scope.user.total_deposit += $scope.user.deposits[i].cash;
           }
