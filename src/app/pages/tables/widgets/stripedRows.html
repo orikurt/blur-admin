@@ -3,21 +3,21 @@
     <thead>
     <tr>
       <th class="table-id">#</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Username</th>
+      <th>UserName</th>
       <th>Email</th>
-      <th>Age</th>
+      <th>Cash</th>
+      <th>Verified</th>
+      <th>Registered</th>
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="item in smartTableData">
-      <td class="table-id">{{item.id}}</td>
-      <td>{{item.firstName}}</td>
-      <td>{{item.lastName}}</td>
-      <td>{{item.username}}</td>
-      <td><a class="email-link" ng-href="mailto:{{item.email}}">{{item.email}}</a></td>
-      <td>{{item.age}}</td>
+    <tr ng-repeat="user in users | orderBy: 'username'">
+      <td class="table-id">{{$index}}</td>
+      <td>{{user.username}}</td>
+      <td><a class="email-link" ng-href="mailto:{{item.email}}">{{user.email}}</a></td>
+      <td>{{user.cash | number}}</td>
+      <td>{{user.verified}}</td>
+      <td>{{user.registered | date}}</td>
     </tr>
     </tbody>
   </table>

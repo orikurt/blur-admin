@@ -12,8 +12,8 @@
   function routeConfig($stateProvider) {
     $stateProvider
         .state('profile', {
-          url: '/profile',
-          title: 'Profile',
+          url: '/profile/:userId',
+          title: 'User Profile',
           templateUrl: 'app/pages/profile/profile.html',
           controller: 'ProfilePageCtrl',
         });

@@ -6,38 +6,43 @@
       </select>
     </label>
   </div>
-  <table class="table" st-table="smartTableData">
+  <table class="table" ng-if="users" st-table="users">
     <thead>
     <tr class="sortable ">
       <th class="table-id" st-sort="id" st-sort-default="true">#</th>
-      <th st-sort="firstName">First Name</th>
-      <th st-sort="lastName">Last Name</th>
+      <th></th>
       <th st-sort="username">Username</th>
       <th st-sort="email">Email</th>
-      <th st-sort="age">Age</th>
+      <th st-sort="cash">Cash</th>
+      <th>Verified</th>
+      <th st-sort="registered">Registered</th>
+      <th></th>
     </tr>
     <tr>
       <th></th>
-      <th><input st-search="firstName" placeholder="Search First Name" class="input-sm form-control search-input"
-                 type="search"/></th>
-      <th><input st-search="lastName" placeholder="Search Last Name" class="input-sm form-control search-input"
-                 type="search"/></th>
+      <th></th>
       <th><input st-search="username" placeholder="Search Username" class="input-sm form-control search-input"
                  type="search"/></th>
       <th><input st-search="email" placeholder="Search Email" class="input-sm form-control search-input" type="search"/>
       </th>
-      <th><input st-search="age" placeholder="Search Age" class="input-sm form-control search-input" type="search"/>
+      <th><input st-search="cash" placeholder="Search Cash" class="input-sm form-control search-input" type="search"/>
       </th>
+      <th></th>
+      <th><input st-search="registered" placeholder="Search Registered" class="input-sm form-control search-input" type="search"/>
+      </th>
+      <th></th>
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="item in smartTableData">
-      <td class="table-id">{{item.id}}</td>
-      <td>{{item.firstName}}</td>
-      <td>{{item.lastName}}</td>
+    <tr ng-repeat="item in users">
+      <td class="table-id">{{$index + 1}}</td>
+      <td class="icons-list"><i class="socicon offline" ng-class="{'online': onlineUsers.indexOf(item.userId) > -1}">D</i></td>
       <td>{{item.username}}</td>
       <td><a class="email-link" ng-href="mailto:{{item.email}}">{{item.email}}</a></td>
-      <td>{{item.age}}</td>
+      <td>{{item.cash}}</td>
+      <td>{{item.verified}}</td>
+      <td>{{item.registered | date}}</td>
+      <td><button type="button" class="btn btn-info btn-icon" ui-sref="profile({userId: item.userId})"><i class="ion-person"></i></button></td>
     </tr>
     </tbody>
     <tfoot>

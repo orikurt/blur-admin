@@ -1,0 +1,26 @@
+<div class="horizontal-scroll">
+  <table class="table table-condensed">
+    <thead>
+    <tr>
+      <th class="table-id">#</th>
+      <th>Device</th>
+      <th>IPs</th>
+      <th>Locations</th>
+      <th>Started</th>
+      <th>Duration</th>
+      <th>Last Seen</th
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in user.usage.sessions">
+      <td class="table-id">{{$index}}</td>
+      <td>{{item.device}}</td>
+      <td><span ng-repeat="loc in item.locations">{{loc.ip}}&nbsp;&nbsp;</span></td>
+      <td><span ng-repeat="loc in item.locations">{{loc.country}}&nbsp;&nbsp;</span></td>
+      <td>{{item.startTime | date: 'dd:MM:yy HH:mm:ss'}}</td>
+      <td>{{(Date.parse(item.endTime) - Date.parse(item.startTime)) / 1000 / 60 / 60 | number}} hours</td>
+      <td>{{item.lastAccessed | date: 'dd:MM:yy HH:mm:ss'}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

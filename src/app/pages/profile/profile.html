@@ -32,21 +32,38 @@
     <div class="row">
       <div class="col-md-6">
         <div class="form-group row clearfix">
-          <label for="inputFirstName" class="col-sm-3 control-label">First Name</label>
+          <label for="inputUserName" class="col-sm-3 control-label">Username</label>
 
           <div class="col-sm-9">
-            <input type="text" class="form-control" id="inputFirstName" placeholder="" value="Anastasiya">
+            <input type="text" class="form-control" id="inputUsername" placeholder="" value="{{user.username}}">
           </div>
         </div>
         <div class="form-group row clearfix">
-          <label for="inputLastName" class="col-sm-3 control-label">Last Name</label>
+          <label for="inputEmail" class="col-sm-3 control-label">Email</label>
 
           <div class="col-sm-9">
-            <input type="text" class="form-control" id="inputLastName" placeholder="" value="">
+            <input type="text" class="form-control" id="inputEmail" placeholder="" value="{{user.email}}">
           </div>
         </div>
+        <div class="form-group row clearfix">
+          <label for="inputCash" class="col-sm-3 control-label">Cash</label>
+
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="inputCash" placeholder="" value="{{user.cash}}">
+          </div>
+        </div>
+
       </div>
       <div class="col-md-6">
+
+        <div class="form-group row clearfix">
+          <label for="inputOccupation" class="col-sm-3 control-label">Registered</label>
+
+          <div class="col-sm-9">
+            <label id="inputOccupation">{{user.registered | date}}</label>
+          </div>
+        </div>
+
         <div class="form-group row clearfix">
           <label class="col-sm-3 control-label">Department</label>
 
@@ -66,6 +83,44 @@
           <div class="col-sm-9">
             <input type="text" class="form-control" id="inputOccupation" placeholder="" value="Front End Web Developer">
           </div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="with-line">Activity</h3>
+
+    <div class="row">
+      <div class="col-lg-6 col-md-12">
+        <div ba-panel ba-panel-title="Portfolio" ba-panel-class="with-scroll table-panel">
+          <div include-with-scope="app/pages/profile/portfolioTable.html"></div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-12">
+        <div ba-panel ba-panel-title="Deposits" ba-panel-class="with-scroll table-panel">
+          <div include-with-scope="app/pages/profile/depositsTable.html"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 col-md-12 tradesTable">
+        <div ba-panel ba-panel-title="Usage" ba-panel-class="with-scroll table-panel">
+          <div include-with-scope="app/pages/profile/sessionsTable.html"></div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="with-line">Trades</h3>
+
+    <div class="row">
+      <div class="col-lg-6 col-md-12 tradesTable">
+        <div ba-panel ba-panel-title="Buys" ba-panel-class="with-scroll table-panel">
+          <div include-with-scope="app/pages/profile/buysTable.html"></div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-12 tradesTable">
+        <div ba-panel ba-panel-title="Sells" ba-panel-class="with-scroll table-panel">
+          <div include-with-scope="app/pages/profile/sellsTable.html"></div>
         </div>
       </div>
     </div>

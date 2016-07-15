@@ -9,8 +9,14 @@
     .controller('ProfilePageCtrl', ProfilePageCtrl);
 
   /** @ngInject */
-  function ProfilePageCtrl($scope, fileReader, $filter, $uibModal) {
-    $scope.picture = $filter('profilePicture')('Nasta');
+  function ProfilePageCtrl($scope, fileReader, $filter, $uibModal, $stateParams, socket, $timeout) {
+
+    var unsubscribers = [];
+    var listeners = [];
+
+    $scope.picture = $filter('appImage')('theme/no-photo.png');
+    //$scope.noPicture = true;
+    $scope.Date = Date;
 
     $scope.removePicture = function () {
       $scope.picture = $filter('appImage')('theme/no-photo.png');
@@ -22,6 +28,38 @@
       fileInput.click();
 
     };
+
+    var updateUsers = function(users){
+      console.log('ProfilePageCtrl:: all users', socket.data.users);
+      for (var i in socket.data.users){
+        if (socket.data.users[i].userId === $stateParams.userId){
+          $scope.user = socket.data.users[i];
+          $scope.user.total_deposit = 0;
+          for (var i in $scope.user.deposits){
+            $scope.user.total_deposit += $scope.user.deposits[i].cash;
+          }
+          console.log('ProfilePageCtrl:: user', $scope.user);
+        }
+      }
+    };
+
+    var updateStocks = function(all_stock){
+      console.log('ProfilePageCtrl:: all stocks', socket.data.stocks);
+      $scope.stocks = {};
+      for (var i in socket.data.stocks){
+        $scope.stocks[socket.data.stocks[i].uid] = socket.data.stocks[i];
+      }
+      console.log('ProfilePageCtrl:: all stocks', $scope.stocks);
+    };
+
+    socket.socket.on('update:users', updateUsers);
+    unsubscribers.push( 'update:users' );
+    listeners.push( updateUsers);
+
+    socket.socket.on('update:stocks', updateStocks);
+    unsubscribers.push( 'update:stocks' );
+    listeners.push( updateStocks);
+
 
     $scope.socialProfiles = [
       {
@@ -84,6 +122,18 @@
     };
 
     $scope.switches = [true, true, false, true, true, false];
+
+    $scope.$on('$destroy', function(){
+      for (var i in unsubscribers){
+        socket.socket.removeListener(unsubscribers[i], listeners[i]);
+      }
+    });
+
+    $timeout(function(){
+      updateUsers(socket.data.users);
+      updateStocks(socket.data.stocks);
+    });
+
   }
 
 })();

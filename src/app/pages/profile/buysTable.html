@@ -1,0 +1,47 @@
+<div class="horizontal-scroll">
+  <div class="form-group select-page-size-wrap ">
+    <label>Rows on page
+      <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+              ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+      </select>
+    </label>
+  </div>
+  <table class="table" ng-if="user.buys" st-table="user.buys">
+    <thead>
+    <tr class="sortable ">
+      <th class="table-id" st-sort="$index" st-sort-default="true">#</th>
+      <th st-sort="uid">Stock</th>
+      <th st-sort="price">Price</th>
+      <th st-sort="shares">Shares</th>
+      <th st-sort="date">Date</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th><input st-search="uid" placeholder="Search Stock" class="input-sm form-control search-input"
+                 type="search"/></th>
+      <th><input st-search="price" placeholder="Search Price" class="input-sm form-control search-input" type="search"/>
+      </th>
+      <th><input st-search="shares" placeholder="Search Shares" class="input-sm form-control search-input" type="search"/>
+      </th>
+      <th><input st-search="date" placeholder="Search Date" class="input-sm form-control search-input" type="search"/>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in user.buys">
+      <td class="table-id">{{$index + 1}}</td>
+      <td>{{stocks[item.uid].abrv}}</td>
+      <td>{{item.price | number}}</td>
+      <td>{{item.shares | number}}</td>
+      <td>{{item.date | date: 'dd-MM-yy HH:mm:ss'}}</td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td colspan="6" class="text-center">
+        <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+      </td>
+    </tr>
+    </tfoot>
+  </table>
+</div>

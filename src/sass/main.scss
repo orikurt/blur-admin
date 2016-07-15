@@ -1,4 +1,19 @@
 @import 'common';
 
+.offline{
+  color: red;
+}
+
+.online{
+  color: green !important;
+}
+
+.tradesTable .panel.with-scroll .panel-body{
+    height: calc(120%);
+}
+
+.tradesTable .table-panel{
+  height: auto;
+}
 // injector
 // endinjector

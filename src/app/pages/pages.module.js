@@ -24,8 +24,8 @@
     $urlRouterProvider.otherwise('/dashboard');
 
     baSidebarServiceProvider.addStaticItem({
-      title: 'Pages',
-      icon: 'ion-document',
+      title: 'Users',
+      icon: 'ion-ios-people',
       subMenu: [{
         title: 'Sign In',
         fixedHref: 'auth.html',

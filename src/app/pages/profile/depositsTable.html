@@ -1,0 +1,24 @@
+<div class="horizontal-scroll">
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th></th>
+      <th>Cash</th>
+      <th class="align-left">Date</th>
+      <th class="align-left">Variety</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in user.deposits">
+      <td></td>
+      <td ng-class="nowrap">{{item.cash}}</td>
+      <td class="align-center">{{item.date | date}}</td>
+      <td class="align-center">{{item.variety}}</td>
+    </tr>
+    <tr>
+      <td>Total</td>
+      <td class="align-center">{{user.total_deposit}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
