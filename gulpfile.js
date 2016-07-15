@@ -2,7 +2,7 @@
 
 var gulp = require('gulp');
 var wrench = require('wrench');
-require('es6-promise').polyfill();
+Promise = require('bluebird');
 
 /**
  *  This will load all js or coffee files in the gulp directory
