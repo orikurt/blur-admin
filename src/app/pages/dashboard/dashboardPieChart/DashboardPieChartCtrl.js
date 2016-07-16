@@ -16,8 +16,6 @@
     var pieColor = baUtil.hexToRGB(baConfig.colors.defaultText, 0.2);
     $scope.smartTablePageSize = 10;
 
-    $scope.users = socket.data.users;
-
     $scope.charts = [{
       color: pieColor,
       description: 'New Visits',
@@ -105,7 +103,6 @@
 
     var updateUsers = function(users){
       console.log('DashboardPieChartCtrl:: users', users);
-      $scope.users = socket.data.users;
       $timeout(function(){
         $scope.charts[4].stats = users.length;
       });

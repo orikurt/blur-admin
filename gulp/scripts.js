@@ -4,14 +4,12 @@ var path = require('path');
 var gulp = require('gulp');
 var conf = require('./conf');
 
-var browserSync = require('browser-sync');
-
 var $ = require('gulp-load-plugins')();
 
 
 gulp.task('scripts-reload', function() {
   return buildScripts()
-    .pipe(browserSync.stream());
+    .pipe();
 });
 
 gulp.task('scripts', function() {

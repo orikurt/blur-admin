@@ -11,6 +11,14 @@
 .tradesTable .table-panel {
   height: auto; }
 
+.form-group .cash-control{
+  width: 42%;
+}
+
+.timer label{
+  width: 100%;
+}
+
 .alert {
   color: #ffffff;
   font-size: 13px;

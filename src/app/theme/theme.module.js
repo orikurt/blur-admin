@@ -6,7 +6,6 @@
   'use strict';
 
   angular.module('BlurAdmin.theme', [
-      //'textAngular',
       'BlurAdmin.theme.components'
   ]);
 

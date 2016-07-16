@@ -2,8 +2,23 @@
 
 <div class="row">
   <div class="col-md-12">
-    <div ba-panel ba-panel-title="User" ba-panel-class="with-scroll">
-      <div include-with-scope="app/pages/tables/widgets/smartTable.html"></div>
+    <div ba-panel ba-panel-title="Market" ba-panel-class="with-scroll">
+      <div class="time_wrapper col-lg-3 col-md-3 col-sm-3 hidden-xs">
+        <div class="timer">
+          <label>Market is <span>{{marketState.current}}</span></label>
+          <label ng-if="marketState.hours !== undefined">
+              <span class="time"><span ng-if="marketState.hours < 10">0</span>{{marketState.hours}}:<span ng-if="marketState.minutes < 10">0</span>{{marketState.minutes}}:<span ng-if="marketState.seconds < 10">0</span>{{marketState.seconds}}</span>
+              to
+              <span>{{marketState.next}}</span>
+          </label>
+          <div class="market_buttons">
+            <button class="btn btn-primary" ng-click="setMarketState('OPENING')">Opening</button>
+            <button class="btn btn-success" ng-click="setMarketState('OPEN')">Trade</button>
+            <button class="btn btn-warning" ng-click="setMarketState('CLOSING')">Closing</button>
+            <button class="btn btn-danger" ng-click="setMarketState('CLOSED')">Close</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

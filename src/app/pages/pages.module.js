@@ -7,15 +7,28 @@
 
   angular.module('BlurAdmin.pages', [
     'ui.router',
-
-    'BlurAdmin.pages.dashboard',
     'BlurAdmin.pages.profile',
+    'BlurAdmin.pages.dashboard',
+    'BlurAdmin.pages.users',
   ])
       .config(routeConfig);
 
   /** @ngInject */
   function routeConfig($urlRouterProvider, baSidebarServiceProvider) {
     $urlRouterProvider.otherwise('/dashboard');
+
+    baSidebarServiceProvider.addStaticItem({
+          title: 'Users',
+          icon: 'ion-person-stalker',
+          subMenu: [{
+            title: 'All users',
+            stateRef: 'users'
+          },
+          {
+            title: 'User Profile',
+            stateRef: 'profile'
+          }]
+        });
   }
 
 })();

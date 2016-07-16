@@ -1,5 +1,3 @@
-@import 'common';
-
 .offline{
   color: red;
 }
@@ -23,5 +21,3 @@
 .timer label{
   width: 100%;
 }
-// injector
-// endinjector

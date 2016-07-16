@@ -1,0 +1,56 @@
+<div class="horizontal-scroll">
+  <div class="form-group select-page-size-wrap ">
+    <label>Rows on page
+      <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+              ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+      </select>
+    </label>
+  </div>
+  <table class="table" ng-if="users" st-table="users">
+    <thead>
+    <tr class="sortable ">
+      <th class="table-id" st-sort="id" st-sort-default="true">#</th>
+      <th></th>
+      <th st-sort="username">Username</th>
+      <th st-sort="email">Email</th>
+      <th st-sort="cash">Cash</th>
+      <th>Verified</th>
+      <th st-sort="registered">Registered</th>
+      <th></th>
+    </tr>
+    <tr>
+      <th></th>
+      <th></th>
+      <th><input st-search="username" placeholder="Search Username" class="input-sm form-control search-input"
+                 type="search"/></th>
+      <th><input st-search="email" placeholder="Search Email" class="input-sm form-control search-input" type="search"/>
+      </th>
+      <th><input st-search="cash" placeholder="Search Cash" class="input-sm form-control search-input" type="search"/>
+      </th>
+      <th></th>
+      <th><input st-search="registered" placeholder="Search Registered" class="input-sm form-control search-input" type="search"/>
+      </th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in users">
+      <td class="table-id">{{$index + 1}}</td>
+      <td class="icons-list"><i class="socicon offline" ng-class="{'online': onlineUsers.indexOf(item.userId) > -1}">D</i></td>
+      <td>{{item.username}}</td>
+      <td><a class="email-link" ng-href="mailto:{{item.email}}">{{item.email}}</a></td>
+      <td>{{item.cash}}</td>
+      <td>{{item.verified}}</td>
+      <td>{{item.registered | date}}</td>
+      <td><button type="button" class="btn btn-info btn-icon" ui-sref="profile({userId: item.userId})"><i class="ion-person"></i></button></td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td colspan="6" class="text-center">
+        <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+      </td>
+    </tr>
+    </tfoot>
+  </table>
+</div>
