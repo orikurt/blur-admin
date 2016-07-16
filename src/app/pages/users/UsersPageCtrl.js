@@ -45,5 +45,10 @@
     unsubscribers.push( 'update:count' );
     listeners.push(updateCount);
 
+    $scope.$on('$destroy', function(){
+      for (var i in unsubscribers){
+        socket.socket.removeListener(unsubscribers[i], listeners[i]);
+      }
+    });    
   }
 })();

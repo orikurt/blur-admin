@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-lg-2">
+    <img ng-src="{{'https://localhost' + ( stock.largeImageUrl )}}" width="100%">
+  </div>
+  <div class="col-lg-5 col-md-10">
+    <div ba-panel ba-panel-title="{{stock.name}}" ba-panel-class="with-scroll">
+      <div include-with-scope="app/pages/stock/infoTable.html"></div>
+    </div>
+  </div>
+  <div class="col-lg-10 ownership">
+    <div ba-panel ba-panel-title="Ownership" ba-panel-class="with-scroll">
+      <div class="col-lg-6 col-md-12 col-sm-12"
+           ba-panel
+           ba-panel-title="Ownership Pie"
+           ba-panel-class="medium-panel traffic-panel">
+        <traffic-chart></traffic-chart>
+      </div>
+      <div class="col-lg-6 col-md-12 col-sm-12"
+           ba-panel
+           ba-panel-title="List"
+           ba-panel-class="medium-panel traffic-panel">
+           <div include-with-scope="app/pages/stock/ownershipTable.html"></div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

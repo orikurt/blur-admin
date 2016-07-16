@@ -22,6 +22,9 @@ angular.module('BlurAdmin').service('socket', function(){
 
   self.socket.on('update:stocks', function(all_stock){
     console.log('socket:: stocks update', all_stock);
+    for (var i in all_stock){
+      all_stock[i].change = (parseFloat(all_stock[i].current_price) - parseFloat(all_stock[i].base_price)) / parseFloat(all_stock[i].base_price) * 100;
+    }
     self.data.stocks = all_stock;
   });
 

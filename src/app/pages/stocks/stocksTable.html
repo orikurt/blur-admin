@@ -1,0 +1,53 @@
+<div class="horizontal-scroll">
+  <div class="form-group select-page-size-wrap ">
+    <label>Rows on page
+      <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+              ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+      </select>
+    </label>
+  </div>
+  <table class="table" ng-if="stocks" st-table="stocks">
+    <thead>
+    <tr class="sortable ">
+      <th class="table-id" st-sort="id" st-sort-default="true">#</th>
+      <th></th>
+      <th st-sort="abrv">Symbol</th>
+      <th st-sort="name">Name</th>
+      <th st-sort="current_price">Price</th>
+      <th st-sort="change">Daily Change</th>
+      <th></th>
+    </tr>
+    <tr>
+      <th></th>
+      <th></th>
+      <th><input st-search="abrv" placeholder="Search Symbol" class="input-sm form-control search-input" type="search"/>
+      </th>
+      <th><input st-search="name" placeholder="Search Name" class="input-sm form-control search-input" type="search"/>
+      </th>
+      <th><input st-search="price" placeholder="Search Price" class="input-sm form-control search-input" type="search"/>
+      </th>
+      <th><input st-search="change" placeholder="Search Change" class="input-sm form-control search-input" type="search"/>
+      </th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in stocks">
+      <td class="table-id">{{$index + 1}}</td>
+      <td class="icons-list"><img ng-src="{{'https://localhost' + ( item.smallImageUrl )}}" width="30" height="30"></td>
+      <td>{{item.abrv}}</td>
+      <td>{{item.name}}</a></td>
+      <td>{{item.current_price | number}}</td>
+      <td>{{item.change | number}}%</td>
+      <td><button type="button" class="btn btn-info btn-icon" ui-sref="stock({uid: item.uid})"><i class="ion-person"></i></button></td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td colspan="6" class="text-center">
+        <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+      </td>
+    </tr>
+    </tfoot>
+  </table>
+</div>

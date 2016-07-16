@@ -19,6 +19,10 @@
   width: 100%;
 }
 
+.ownership .panel.with-scroll .panel-body{
+  overflow-y: hidden;
+}
+
 .alert {
   color: #ffffff;
   font-size: 13px;

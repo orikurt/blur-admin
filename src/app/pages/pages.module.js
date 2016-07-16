@@ -10,6 +10,8 @@
     'BlurAdmin.pages.profile',
     'BlurAdmin.pages.dashboard',
     'BlurAdmin.pages.users',
+    'BlurAdmin.pages.stocks',
+    'BlurAdmin.pages.stock'
   ])
       .config(routeConfig);
 
@@ -27,6 +29,17 @@
           {
             title: 'User Profile',
             stateRef: 'profile'
+          }]
+        },{
+          title: 'Stocks',
+          icon: 'ion-person-stalker',
+          subMenu: [{
+            title: 'All Stocks',
+            stateRef: 'stocks'
+          },
+          {
+            title: 'Stock Profile',
+            stateRef: 'stock'
           }]
         });
   }

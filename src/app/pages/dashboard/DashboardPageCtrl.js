@@ -42,5 +42,10 @@
     listeners.push( updateMarketState);
 
     socket.socket.emit('getSMarketState');
+    $scope.$on('$destroy', function(){
+      for (var i in unsubscribers){
+        socket.socket.removeListener(unsubscribers[i], listeners[i]);
+      }
+    });    
   }
 })();

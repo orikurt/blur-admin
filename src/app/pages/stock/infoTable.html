@@ -1,0 +1,26 @@
+<div class="horizontal-scroll">
+  <table class="table table-bordered">
+    <tbody>
+      <tr>
+        <td>Symbol</td>
+        <td class="align-left" ng-class="nowrap">{{stock.abrv}}</td>
+      </tr>
+      <tr>
+        <td>Base Price</td>
+        <td class="align-left" ng-class="nowrap">{{stock.base_price}}</td>
+      </tr>
+      <tr>
+        <td>Opening</td>
+        <td class="align-left" ng-class="nowrap">{{stock.opening_price}}</td>
+      </tr>
+      <tr>
+        <td>Current</td>
+        <td class="align-left" ng-class="nowrap">{{stock.current_price}}</td>
+      </tr>
+      <tr>
+        <td>Change</td>
+        <td class="align-left" ng-class="nowrap">{{stock.diff_percent | number}}%</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
