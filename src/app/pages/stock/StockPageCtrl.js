@@ -15,9 +15,28 @@
     var unsubscribers = [];
     var listeners = [];
 
+    $scope.users = socket.data.users;
+    $scope.binding = {
+      userId: '',
+      shares: 10,
+      uid: $stateParams.uid
+    };
+
+    $scope.addSharesUser = function(){
+      console.log('StockPageCtrl:: addSharesUser', $scope.binding);
+      socket.socket.emit('sharesToUser', $scope.binding);
+    };
+
     var updateStockInfo = function(stockInfo){
       console.log('StockPageCtrl:: update stock info', stockInfo);
       $scope.stock = stockInfo;
+    };
+
+    var updateUsers = function(users){
+      console.log('StockPageCtrl:: users', users);
+      $timeout(function(){
+        $scope.users = users;
+      });
     };
 
     var saveOwnershipMap = function(ownershipMap){
@@ -32,6 +51,9 @@
     unsubscribers.push( 'update:ownershipMap' );
     listeners.push( saveOwnershipMap );
 
+    socket.socket.on('update:users', updateUsers);
+    unsubscribers.push( 'update:users' );
+    listeners.push( updateUsers);
 
     $scope.$on('$destroy', function(){
       for (var i in unsubscribers){

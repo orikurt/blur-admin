@@ -7,6 +7,19 @@
       <div include-with-scope="app/pages/stock/infoTable.html"></div>
     </div>
   </div>
+  <div class="col-lg-5 col-md-10">
+    <div ba-panel ba-panel-title="Shares" ba-panel-class="with-scroll">
+      <div class="form-group">
+        <select class="form-control selectpicker with-search" data-live-search="true" title="Select user" selectpicker
+                ng-model="binding.userId"
+                ng-options="item.userId as item.username for item in users | orderBy: 'username'">
+        </select>
+        <input type="number" class="form-control" placeholder="Shares" ng-model="binding.shares">
+        <button class="btn btn-primary" ng-click="addSharesUser()">Add Shares</button>
+      </div>
+    </div>
+  </div>
+
   <div class="col-lg-10 ownership">
     <div ba-panel ba-panel-title="Ownership" ba-panel-class="with-scroll">
       <div class="col-lg-6 col-md-12 col-sm-12"
