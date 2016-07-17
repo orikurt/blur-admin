@@ -72,10 +72,12 @@
       };
       for (var i in ownershipMap){
         var owner = ownershipMap[i];
-        pieData.labels.push(owner.name);
-        dataSet.data.push(owner.shares);
-        $scope.total_shares += parseInt(owner.shares);
-        dataSet.backgroundColor.push(pie_colors[i%pie_colors.length]);
+        if (owner.id !== $stateParams.uid){
+          pieData.labels.push(owner.name);
+          dataSet.data.push(owner.shares);
+          $scope.total_shares += parseInt(owner.shares);
+          dataSet.backgroundColor.push(pie_colors[i%pie_colors.length]);
+        }
       }
       pieData.datasets.push(dataSet);
       config.data = pieData;

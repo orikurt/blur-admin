@@ -17,7 +17,7 @@
 
     $scope.users = socket.data.users;
     $scope.binding = {
-      userId: '',
+      userId: socket.data.users[0].userId || '',
       shares: 10,
       uid: $stateParams.uid
     };
@@ -36,6 +36,7 @@
       console.log('StockPageCtrl:: users', users);
       $timeout(function(){
         $scope.users = users;
+        $scope.binding.userId = users[0].userId;
       });
     };
 
