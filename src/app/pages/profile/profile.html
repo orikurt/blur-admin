@@ -49,7 +49,7 @@
           <label for="inputCash" class="col-sm-3 control-label">Cash</label>
 
           <div class="col-sm-9">
-            <label id="inputCash" class="col-sm-3 control-label">{{user.cash}}</label>
+            <label id="inputCash" class="col-sm-3 control-label">{{user.cash | number}}</label>
             <input type="text" class="form-control cash-control" placeholder="" ng-model="locals.cash_add" style="width: 42%;" /> 
             <button class="btn btn-primary" ng-click="cashToUser()">Add cash</button>
           </div>
