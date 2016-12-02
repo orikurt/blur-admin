@@ -8,6 +8,7 @@
   angular.module('BlurAdmin.pages', [
     'ui.router',
     'BlurAdmin.pages.profile',
+    'BlurAdmin.pages.signin',
     'BlurAdmin.pages.dashboard',
     'BlurAdmin.pages.users',
     'BlurAdmin.pages.stocks',

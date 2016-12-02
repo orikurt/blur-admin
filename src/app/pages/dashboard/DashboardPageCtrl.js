@@ -9,7 +9,7 @@
       .controller('DashboardPageCtrl', DashboardPageCtrl);
 
   /** @ngInject */
-  function DashboardPageCtrl($scope, $timeout, baConfig, baUtil, socket) {
+  function DashboardPageCtrl($scope, $timeout, baConfig, baUtil, socket, $uibModal) {
 
     console.log('DashboardPageCtrl:: init!');
     var unsubscribers = [];
@@ -33,8 +33,36 @@
   		}
     };
 
-    $scope.setMarketState = function(state){
-      socket.socket.emit('setMarketState', state);
+    $scope.open = function (page, controller, state) {
+      $scope.modal = $uibModal.open({
+        animation: true,
+        templateUrl: page,
+        size: 'md',
+        controller: controller,
+        resolve: {
+          submit: function(){
+            return resolveSignIn;
+          },
+          state: function(){
+            return state;
+          }
+        }
+      });
+
+      $scope.modal.result.then(function(user){
+        user.state = state;
+        console.log('DashboardPageCtrl:: signin resolve', user);
+        $scope.setMarketState(user);
+      });
+  
+    };
+
+    var resolveSignIn = function(data){
+      $scope.modal.close(data);
+    }
+
+    $scope.setMarketState = function(data){
+      socket.socket.emit('setMarketState', data);
     };
 
     socket.socket.on('update:marketState', updateMarketState);
@@ -46,6 +74,6 @@
       for (var i in unsubscribers){
         socket.socket.removeListener(unsubscribers[i], listeners[i]);
       }
-    });    
+    });
   }
 })();

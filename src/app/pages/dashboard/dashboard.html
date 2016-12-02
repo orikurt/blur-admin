@@ -12,10 +12,11 @@
               <span>{{marketState.next}}</span>
           </label>
           <div class="market_buttons">
-            <button class="btn btn-primary" ng-click="setMarketState('OPENING')">Opening</button>
-            <button class="btn btn-success" ng-click="setMarketState('OPEN')">Trade</button>
-            <button class="btn btn-warning" ng-click="setMarketState('CLOSING')">Closing</button>
-            <button class="btn btn-danger" ng-click="setMarketState('CLOSED')">Close</button>
+            <!--button class="btn btn-primary" ng-click="setMarketState('OPENING')">Opening</button-->
+            <button class="btn btn-primary" ng-click="open('app/pages/signin/form.html', 'signInCtrl', 'OPENING')">Opening</button>
+            <button class="btn btn-success" ng-click="open('app/pages/signin/form.html', 'signInCtrl', 'OPEN')">Trade</button>
+            <button class="btn btn-warning" ng-click="open('app/pages/signin/form.html', 'signInCtrl', 'CLOSING')">Closing</button>
+            <button class="btn btn-danger" ng-click="open('app/pages/signin/form.html', 'signInCtrl', 'CLOSED')">Close</button>
           </div>
         </div>
       </div>
