@@ -9,7 +9,7 @@
     .controller('StockPageCtrl', StockPageCtrl);
 
   /** @ngInject */
-  function StockPageCtrl($scope, $stateParams, socket, $timeout) {
+  function StockPageCtrl($scope, $stateParams, socket, $timeout, $uibModal) {
 
     console.log('StockPageCtrl:: init!');
     var unsubscribers = [];
@@ -22,9 +22,35 @@
       uid: $stateParams.uid
     };
 
-    $scope.addSharesUser = function(){
-      console.log('StockPageCtrl:: addSharesUser', $scope.binding);
-      socket.socket.emit('sharesToUser', $scope.binding);
+    $scope.openAuth = function () {
+      $scope.modal = $uibModal.open({
+        animation: true,
+        templateUrl: 'app/pages/signin/form.html',
+        size: 'md',
+        controller: 'signInCtrl',
+        resolve: {
+          submit: function(){
+            return resolveSignIn;
+          }
+        }
+      });
+
+      $scope.modal.result.then(function(user){
+        console.log('DashboardPageCtrl:: signin resolve', user);
+        $scope.addSharesUser(user);
+      });
+  
+    };
+
+    var resolveSignIn = function(data){
+      $scope.modal.close(data);
+    }
+
+
+    $scope.addSharesUser = function(user){
+      Object.assign(user, $scope.binding);
+      console.log('StockPageCtrl:: addSharesUser', user);
+      socket.socket.emit('sharesToUser', user);
     };
 
     var updateStockInfo = function(stockInfo){

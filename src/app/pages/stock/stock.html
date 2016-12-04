@@ -15,7 +15,7 @@
                 ng-options="item.userId as item.username for item in users | orderBy: 'username'">
         </select>
         <input type="number" class="form-control" placeholder="Shares" ng-model="binding.shares">
-        <button class="btn btn-primary" ng-click="addSharesUser()">Add Shares</button>
+        <button class="btn btn-primary" ng-click="openAuth()">Add Shares</button>
       </div>
     </div>
   </div>

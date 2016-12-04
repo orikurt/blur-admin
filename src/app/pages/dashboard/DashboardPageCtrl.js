@@ -33,18 +33,15 @@
   		}
     };
 
-    $scope.open = function (page, controller, state) {
+    $scope.openAuth = function (state) {
       $scope.modal = $uibModal.open({
         animation: true,
-        templateUrl: page,
+        templateUrl: 'app/pages/signin/form.html',
         size: 'md',
-        controller: controller,
+        controller: 'signInCtrl',
         resolve: {
           submit: function(){
             return resolveSignIn;
-          },
-          state: function(){
-            return state;
           }
         }
       });

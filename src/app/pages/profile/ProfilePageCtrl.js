@@ -19,16 +19,41 @@
     $scope.Date = Date;
     $scope.locals = {};
 
-    $scope.cashToUser = function($e){
-      console.log('ProfilePageCtrl:: cashToUser', $scope.user.cash, $scope.locals.cash_add);
+
+    $scope.openAuth = function () {
+      $scope.modal = $uibModal.open({
+        animation: true,
+        templateUrl: 'app/pages/signin/form.html',
+        size: 'md',
+        controller: 'signInCtrl',
+        resolve: {
+          submit: function(){
+            return resolveSignIn;
+          }
+        }
+      });
+
+      $scope.modal.result.then(function(user){
+        console.log('ProfilePageCtrl:: signin resolve', user);
+        $scope.cashToUser(user);
+      });
+  
+    };
+
+    var resolveSignIn = function(data){
+      $scope.modal.close(data);
+    }
+
+
+    $scope.cashToUser = function(user){
+      user.userId = $scope.user.userId;
+      user.cash = parseInt($scope.locals.cash_add);
+      console.log('ProfilePageCtrl:: cashToUser', user);
       if (!parseInt($scope.locals.cash_add)){
         console.error('ProfilePageCtrl:: cashToUser | cash must be number',$scope.locals.cash_add);
         return;
       }
-      socket.socket.emit('admin:cash', {
-        userId: $scope.user.userId,
-        cash: parseInt($scope.locals.cash_add)
-      });
+      socket.socket.emit('admin:cash', user);
     };
 
     $scope.removePicture = function () {
