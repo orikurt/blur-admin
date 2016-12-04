@@ -15,7 +15,8 @@
           url: '/stock/:uid',
           title: 'Stock Profile',
           templateUrl: 'app/pages/stock/stock.html',
-          controller: 'StockPageCtrl'
+          controller: 'StockPageCtrl',
+          data: {}
         });
   }
 

@@ -27,7 +27,7 @@
         animation: true,
         templateUrl: 'app/pages/signin/form.html',
         size: 'md',
-        controller: 'signInCtrl',
+        controller: 'reAuthCtrl',
         resolve: {
           submit: function(){
             return resolveSignIn;

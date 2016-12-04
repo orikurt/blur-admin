@@ -34,7 +34,7 @@
 </head>
 <body>
 <div class="body-bg"></div>
-<main ng-if="$pageFinishedLoading" ng-class="{ 'menu-collapsed': $baSidebarService.isMenuCollapsed() }">
+<main ng-if="$pageFinishedLoading" ng-class="{ 'menu-collapsed': $baSidebarService.isMenuCollapsed() }" ng-controller="mainCtrl">
 
   <ba-sidebar></ba-sidebar>
   <page-top></page-top>
@@ -175,6 +175,7 @@
 
 
 <script src="app/theme/services/socket.component.js"></script>
+<script src="app/theme/services/authservice.js"></script>
 <script src="app/theme/services/baUtil.js"></script>
 <script src="app/theme/services/fileReader.js"></script>
 <script src="app/theme/services/preloader.js"></script>
