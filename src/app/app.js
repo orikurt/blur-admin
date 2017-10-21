@@ -26,4 +26,6 @@ angular.module('BlurAdmin', [
 	if (!authentication.isAdmin() && $state.current.name !== 'signin'){
 		$state.go('signin', {from: $state.current.name});		
 	}
+}).constant('constants', {
+	serverBaseUrl: window.location.protocol + '//' + window.location.hostname
 });

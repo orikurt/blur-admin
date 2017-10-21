@@ -9,7 +9,7 @@
       .controller('DashboardPieChartCtrl', DashboardPieChartCtrl);
 
   /** @ngInject */
-  function DashboardPieChartCtrl($scope, $timeout, baConfig, baUtil, socket) {
+  function DashboardPieChartCtrl($scope, $timeout, baConfig, baUtil, socket, $http, constants) {
 
     var unsubscribers = [];
     var listeners = [];
@@ -18,8 +18,8 @@
 
     $scope.charts = [{
       color: pieColor,
-      description: 'New Visits',
-      stats: '57,820',
+      description: 'New Registrations',
+      stats: '?',
       icon: 'person',
     }, {
       color: pieColor,
@@ -38,15 +38,15 @@
       icon: 'refresh',
     }, {
       color: pieColor,
-      description: 'Registered Users',
+      description: 'Total Users',
       class: 'registered',
-      stats: 0,
+      stats: '?',
       icon: 'person',
     }, {
       color: pieColor,
       class: 'onliners',
       description: 'Online Now',
-      stats: 0,
+      stats: '?',
       icon: 'person',
     }
   ];
@@ -106,7 +106,13 @@
       $timeout(function(){
         $scope.charts[4].stats = users.length;
       });
+    };
 
+    var getNewUsers = function(){
+      console.log('DashboardPieChartCtrl:: get new users');
+      $http.get(constants.serverBaseUrl + '/users/newregistrations').then(function(newUsers){
+        console.log('DashboardPieChartCtrl:: get new users', newUsers);
+      });
     };
 
     socket.socket.on('update:count', updateCount);
